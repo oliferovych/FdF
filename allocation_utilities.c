@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 18:40:21 by dolifero          #+#    #+#             */
-/*   Updated: 2024/05/11 19:21:02 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/05/11 19:59:11 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,14 @@ void	ft_allocate_map(t_map *map)
 		map->flat[i] = (int *)malloc(sizeof(int) * map->width);
 		i++;
 	}
+}
+
+void	free_the_map(t_map *map)
+{
+	while (map->height > 0)
+	{
+		free(map->flat[map->height - 1]);
+		map->height--;
+	}
+	free(map->flat);
 }
