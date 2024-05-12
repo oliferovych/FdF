@@ -6,7 +6,7 @@
 #    By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/10 15:54:36 by dolifero          #+#    #+#              #
-#    Updated: 2024/05/11 19:19:16 by dolifero         ###   ########.fr        #
+#    Updated: 2024/05/12 18:34:20 by dolifero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ NAME			= FdF
 
 LIBFT_DIR 		= Libft
 LIBFT			= $(LIBFT_DIR)/libft.a
+LIBMLX			= ./MLX42
 
 BOLD_PURPLE	=	\033[1;35m
 BOLD_CYAN	=	\033[1;36m
@@ -50,6 +51,10 @@ clean:
 				@echo "$(CYAN)"
 				$(RM) $(OBJS) $(LIBFT_DIR)/*.o
 				@echo "$(DEF_COLOR)"
+
+libmlx:
+				mkdir -p $(LIBMLX)/build
+				cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 
 fclean:
 				@echo "$(CYAN)"

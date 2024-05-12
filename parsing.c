@@ -6,59 +6,37 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 19:21:38 by dolifero          #+#    #+#             */
-/*   Updated: 2024/05/11 19:49:23 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/05/12 17:44:50 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
 
-static int	count_values(const char *s)
+void	parse_file(char *file, t_map *map)
 {
-	int	values;
-	int	i;
-
-	i = 0;
-	values = 0;
-	while (s[i] != '\n' && s[i] != '\0')
-	{
-		if (s[i] != ' ')
-		{
-			values++;
-			while (s[i] && s[i] != ' '
-				&& ((s[i] >= '0' && s[i] <= '9') || s[i] == '-'))
-				i++;
-		}
-		else
-			i++;
-	}
-	return (values);
-}
-
-int	openfile(int argc, char **argv, t_map *map)
-{
-	char	*line;
+	int		i;
+	int		j;
 	int		fd;
+	char	*line;
+	char	**splitted;
 
-	fd = open(argv[1], O_RDONLY);
+	fd = open(file, O_RDONLY);
+	i = 0;
 	line = get_next_line(fd);
-	map->height = 0;
-	map->width = 0;
 	while (line != NULL)
 	{
-		if (!str_is_numerical(line) || argc != 2)
-			return (free(line), ft_putstr_fd("File error", 2), 0);
-		map->width += count_values(line);
-		map->height++;
-		if (map->width / map->height != count_values(line) && line != NULL)
-			return (free(line), ft_putstr_fd("File error", 2), 0);
+		j = 0;
+		splitted = ft_split(line, ' ');
+		while (splitted[j])
+		{
+			map->flat[i][j] = atoi(splitted[j]);
+			free(splitted[j]);
+			j++;
+		}
 		free(line);
+		free(splitted);
 		line = get_next_line(fd);
+		i++;
 	}
-	map->width = map->width / map->height;
 	free(line);
-	ft_printf("width: %d\n", map->width);
-	ft_printf("height: %d\n", map->height);
-	close(fd);
-	return (1);
 }
-
