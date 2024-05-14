@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 19:09:03 by dolifero          #+#    #+#             */
-/*   Updated: 2024/05/14 17:38:47 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/05/14 18:15:19 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,39 @@ int32_t	main(int argc, char **argv)
 	if (!img || (mlx_image_to_window(mlx, img, 0, 0) < 0))
 		error();
 	int i;
-	int j = map.height * 30 + sin(25);
-	while (j > 0)
+	int j = map.height * 42;
+	int z;
+	while (j >= 0)
 	{
-		i = map.width * 30 + cos(25);
+		i = map.width * 42;
 		while (i > 0)
 		{
-			mlx_put_pixel(img, i + 325, j + 175, 0xFFFFFFFF);
-			i -= 30;
+			z = i;
+			i -= 42;
+			while (z > i)
+			{
+				mlx_put_pixel(img, z + 200, j + 100, 0xFFFFFFFF);
+				z--;
+			}
+
 		}
-		j -= 30;
+		j -= 42;
+	}
+	i = map.width * 42;
+	while (i >= 0)
+	{
+		j = map.height * 42;
+		while (j > 0)
+		{
+			z = j;
+			j -= 42;
+			while (z > j)
+			{
+				mlx_put_pixel(img, i + 200, z + 100, 0xFFFFFFFF);
+				z--;
+			}
+		}
+		i -= 42;
 	}
 	mlx_loop_hook(mlx, ft_hook, mlx);
 	mlx_loop(mlx);
