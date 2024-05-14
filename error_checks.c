@@ -6,11 +6,11 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 17:59:52 by dolifero          #+#    #+#             */
-/*   Updated: 2024/05/12 18:08:11 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:39:46 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FdF.h"
+#include "FdF_head.h"
 
 int	str_is_numerical(char *string)
 {

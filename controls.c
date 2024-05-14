@@ -1,42 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/10 19:21:38 by dolifero          #+#    #+#             */
-/*   Updated: 2024/05/14 14:39:00 by dolifero         ###   ########.fr       */
+/*   Created: 2024/05/14 16:21:06 by dolifero          #+#    #+#             */
+/*   Updated: 2024/05/14 16:41:33 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF_head.h"
 
-void	parse_file(char *file, t_map *map)
+void	ft_hook(void *param)
 {
-	int		i;
-	int		j;
-	int		fd;
-	char	*line;
-	char	**splitted;
+	mlx_image_t	*img;
 
-	fd = open(file, O_RDONLY);
-	i = 0;
-	line = get_next_line(fd);
-	while (line != NULL)
-	{
-		j = 0;
-		splitted = ft_split(line, ' ');
-		while (splitted[j])
-		{
-			map->flat[i][j] = atoi(splitted[j]);
-			free(splitted[j]);
-			j++;
-		}
-		free(line);
-		free(splitted);
-		line = get_next_line(fd);
-		i++;
-	}
-	free(line);
+	img = param;
+	if (mlx_is_key_down(param, MLX_KEY_ESCAPE))
+		mlx_close_window(param);
+	if (mlx_is_key_down(param, MLX_KEY_UP))
+		img->instances[0].y -= 5;
+	if (mlx_is_key_down(param, MLX_KEY_DOWN))
+		img->instances[0].y += 5;
+	if (mlx_is_key_down(param, MLX_KEY_LEFT))
+		img->instances[0].x -= 5;
+	if (mlx_is_key_down(param, MLX_KEY_RIGHT))
+		img->instances[0].x += 5;
 }

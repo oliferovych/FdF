@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FdF.h                                              :+:      :+:    :+:   */
+/*   FdF_head.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 19:10:03 by dolifero          #+#    #+#             */
-/*   Updated: 2024/05/12 18:25:41 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:39:26 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include "Libft/libft.h"
 # include "MLX42/include/MLX42/MLX42.h"
 # include <math.h>
-#define WIDTH 1980
-#define HEIGHT 1200
+#define WIDTH 1280
+#define HEIGHT 720
 
 typedef struct s_map
 {
@@ -33,5 +33,6 @@ void	free_the_map(t_map *map);
 
 int		str_is_numerical(char *string);
 
+void	ft_hook(void *param);
 
 #endif
