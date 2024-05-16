@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_checks.c                                     :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 17:59:52 by dolifero          #+#    #+#             */
-/*   Updated: 2024/05/14 16:39:46 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:17:14 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,17 @@ int	str_is_numerical(char *string)
 	return (1);
 }
 
+void	ft_error(void)
+{
+	ft_putstr_fd((char *)mlx_strerror(mlx_errno), 2);
+	exit(EXIT_FAILURE);
+}
 
+int	valid_name(char *name, int argc)
+{
+	if (argc != 2)
+		return (ft_printf("Usage: ./FdF <filename>.fdf\n"), 0);
+	if (!ft_strnstr(name, ".fdf", ft_strlen(name)))
+		return (ft_printf("Usage: ./FdF <filename>.fdf\n"), 0);
+	return (1);
+}

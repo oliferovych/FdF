@@ -6,25 +6,36 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 16:21:06 by dolifero          #+#    #+#             */
-/*   Updated: 2024/05/14 16:41:33 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/05/16 18:41:03 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF_head.h"
 
-void	ft_hook(void *param)
+void	ft_window_hook(void *param)
 {
-	mlx_image_t	*img;
+	t_fdf	*fdf;
 
-	img = param;
-	if (mlx_is_key_down(param, MLX_KEY_ESCAPE))
-		mlx_close_window(param);
-	if (mlx_is_key_down(param, MLX_KEY_UP))
-		img->instances[0].y -= 5;
-	if (mlx_is_key_down(param, MLX_KEY_DOWN))
-		img->instances[0].y += 5;
-	if (mlx_is_key_down(param, MLX_KEY_LEFT))
-		img->instances[0].x -= 5;
-	if (mlx_is_key_down(param, MLX_KEY_RIGHT))
-		img->instances[0].x += 5;
+	fdf = (t_fdf *)param;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(fdf->mlx);
 }
+
+void	ft_rescale(void *param)
+{
+	t_fdf	*fdf;
+
+	fdf = (t_fdf *)param;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_DOWN))
+		fdf->scale += 2;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_UP))
+		fdf->scale -= 2;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_R))
+		fdf ->scale = 6;
+}
+
+// void	ft_hook_controls(t_fdf *fdf)
+// {
+// 	mlx_key_hook(fdf->mlx, ft_rescale, fdf);
+// 	mlx_loop_hook(fdf->mlx, ft_window_hook, &fdf);
+// }

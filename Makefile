@@ -6,7 +6,7 @@
 #    By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/10 15:54:36 by dolifero          #+#    #+#              #
-#    Updated: 2024/05/14 16:39:58 by dolifero         ###   ########.fr        #
+#    Updated: 2024/05/16 17:49:15 by dolifero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,12 @@ NAME			= FdF
 
 SRCS			=	FdF.c\
 					parsing.c\
-					error_checks.c\
+					errors.c\
 					allocation_utilities.c\
-					controls.c
+					controls.c\
+					image_calc.c\
+					overlay.c\
+					draw.c
 OBJS			= ${SRCS:.c=.o}
 
 HEADERLIBMLX	= -I $(LIBMLX)/include/MLX42

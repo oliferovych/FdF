@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 18:40:21 by dolifero          #+#    #+#             */
-/*   Updated: 2024/05/14 14:38:54 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/05/16 18:45:28 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,18 @@ int	openfile(int argc, char **argv, t_map *map)
 	char	*line;
 	int		fd;
 
-	fd = open(argv[1], O_RDONLY);
-	line = get_next_line(fd);
 	map->height = 0;
 	map->width = 0;
-	while (line != NULL)
+	fd = open(argv[1], O_RDONLY);
+	line = get_next_line(fd);
+	while (line != NULL && valid_name(argv[1], argc))
 	{
-		if (!str_is_numerical(line) || argc != 2)
-			return (free(line), ft_putstr_fd("File error", 2), 0);
+		if (!str_is_numerical(line))
+			return (free(line), ft_putstr_fd("File error\n", 2), 0);
 		map->width += count_values(line);
 		map->height++;
 		if (map->width / map->height != count_values(line) && line != NULL)
-			return (free(line), ft_putstr_fd("File error", 2), 0);
+			return (free(line), ft_putstr_fd("File error\n", 2), 0);
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -80,12 +80,18 @@ void	ft_allocate_map(t_map *map)
 	}
 }
 
-void	free_the_map(t_map *map)
+void	free_allocations(t_fdf *fdf)
 {
-	while (map->height > 0)
+	int	i;
+
+	i = fdf->map.height;
+	if (fdf->points != NULL)
+		free(fdf->points);
+	while (i > 0)
 	{
-		free(map->flat[map->height - 1]);
-		map->height--;
+		free(fdf->map.flat[i - 1]);
+		i--;
 	}
-	free(map->flat);
+	free(fdf->map.flat);
+	free(fdf->title);
 }
