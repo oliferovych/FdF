@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 19:09:03 by dolifero          #+#    #+#             */
-/*   Updated: 2024/05/16 18:44:26 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/05/17 16:50:31 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,19 @@ int32_t	main(int argc, char **argv)
 	parse_file(argv[1], &fdf.map);
 	fdf.title = ft_strjoin("FdF - ", argv[1]);
 	fdf.mlx = mlx_init(WIDTH, HEIGHT, fdf.title, true);
-	ft_3d_to_2d(&fdf.map, &fdf.points);
 	if (!fdf.mlx)
 		ft_error();
-	fdf.img = mlx_new_image(fdf.mlx, 1280, 720);
+	ft_3d_to_2d(&fdf.map, &fdf.points);
+	fdf.img = mlx_new_image(fdf.mlx, WIDTH, HEIGHT);
 	if (!fdf.img || (mlx_image_to_window(fdf.mlx, fdf.img, 0, 0) < 0))
 		ft_error();
 	overlay(&fdf);
-	// ft_hook_controls(&fdf);
-	points_into_isometric(&fdf.map, &fdf.points, fdf.img);
 	ft_printf("%d\n", fdf.points[1].x);
+	ft_hook_controls(&fdf);
+	fdf.scale = STANDARD_ZOOM;
+	points_into_isometric(&fdf);
+	// draw_map(&fdf);
+	ft_printf("something\n");
 	mlx_loop(fdf.mlx);
 	mlx_terminate(fdf.mlx);
 	free_allocations(&fdf);

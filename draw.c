@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 17:48:34 by dolifero          #+#    #+#             */
-/*   Updated: 2024/05/16 18:12:52 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:44:44 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,17 +85,26 @@ void	draw_map(t_fdf *fdf)
 	int	y;
 	int	i;
 
-	x = 0;
-	i = 0;
-	while (x < fdf->map.width)
+	x = -1;
+	i = 1;
+	while (++x < fdf->map.width)
 	{
-		y = 0;
-		while (y < fdf->map.height)
+		y = -1;
+		while (++y < fdf->map.height)
 		{
-			i++;
 			draw_lines(fdf->img, &fdf->points[i - 1], &fdf->points[i]);
-			y++;
+			i++;
 		}
-		x++;
+	}
+	y = -1;
+	i = 0;
+	while (++y < fdf->map.height)
+	{
+		x = -1;
+		while (++x < fdf->map.width)
+		{
+			draw_lines(fdf->img, &fdf->points[i - 1], &fdf->points[i]);
+			i++;
+		}
 	}
 }
