@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 16:21:06 by dolifero          #+#    #+#             */
-/*   Updated: 2024/05/17 17:07:23 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/05/19 21:01:07 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,48 +20,43 @@ void	ft_window_hook(void *param)
 	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(mlx);
 }
-// 	if (mlx_is_key_down((* fdf).mlx, MLX_KEY_R))
-// 		(*fdf).scale = 10;
 
-void	scale_hook(mlx_key_data_t keydata, void *param)
+void	reset_img(t_fdf *fdf)
+{
+	fdf->scale = STANDARD_ZOOM;
+	fdf->flatten = STANDARD_FLATTEN;
+	fdf->move_lr = STANDARD_MOVE;
+	fdf->move_du = STANDARD_MOVE;
+	fdf->rotation_z = STANDARD_ROT_Z;
+}
+
+void	scale_hook(void *param)
 {
 	t_fdf	*fdf;
 
 	fdf = (t_fdf *)param;
-	if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS)
-	{
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_KP_ADD))
 		fdf->scale += 3;
-		ft_printf("ZOOM IN\n");
-	}
-	if (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_PRESS)
-	{
+	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_KP_SUBTRACT))
 		fdf->scale -= 3;
-		ft_printf("ZOOM OUT\n");
-	}
-	if (keydata.key == MLX_KEY_R && keydata.action == MLX_PRESS)
-	{
-		fdf->scale = 20;
-		ft_printf("RESET\n");
-	}
-}
-
-// void	scroll_rescale(double xdelta, double ydelta, void *param)
-// {
-// 	t_fdf	*fdf;
-
-// 	fdf = (t_fdf *)param;
-// 	if (ydelta > 0)
-// 		fdf->scale += 2;
-// 	else if (ydelta < 0)
-// 		fdf->scale -= 2;
-// 	if (xdelta < 0)
-// 		ft_printf("Sliiiide to the left!");
-// 	else if (xdelta > 0)
-// 		ft_printf("Sliiiide to the right!");
-// }
-
-void	ft_hook_controls(t_fdf *fdf)
-{
-	mlx_key_hook(fdf->mlx, scale_hook, &fdf);
-	mlx_loop_hook(fdf->mlx, ft_window_hook, fdf->mlx);
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_W))
+		fdf->flatten -= 0.1;
+	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_S))
+		fdf->flatten += 0.1;
+	if (fdf->flatten > 10)
+		fdf->flatten = 10;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_A))
+		fdf->rotation_z += 0.1;
+	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_D))
+		fdf->rotation_z -= 0.1;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_LEFT))
+		fdf->move_lr -= 10;
+	if (mlx_is_key_down (fdf->mlx, MLX_KEY_RIGHT))
+		fdf->move_lr += 10;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_UP))
+		fdf->move_du -= 10;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_DOWN))
+		fdf->move_du += 10;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_R))
+		reset_img(fdf);
 }

@@ -6,7 +6,7 @@
 #    By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/10 15:54:36 by dolifero          #+#    #+#              #
-#    Updated: 2024/05/16 17:49:15 by dolifero         ###   ########.fr        #
+#    Updated: 2024/05/19 18:57:40 by dolifero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,9 @@ SRCS			=	FdF.c\
 					controls.c\
 					image_calc.c\
 					overlay.c\
-					draw.c
+					draw.c\
+					math_utils.c\
+					brezenham.c
 OBJS			= ${SRCS:.c=.o}
 
 HEADERLIBMLX	= -I $(LIBMLX)/include/MLX42
@@ -88,9 +90,14 @@ clean:
 fclean:
 				@echo "$(CYAN)"
 				$(RM) -rf $(OBJS) $(NAME) $(LIBFT_DIR)/*.o $(LIBFT)
-				$(RM) -rf $(LIBMLX)/build
 				@echo "$(DEF_COLOR)"
 				@echo "\n$(BOLD_GREEN)Fclean!\n$(DEF_COLOR)"
+
+lclean:
+				@echo "$(CYAN)"
+				$(RM) -rf $(LIBMLX)/build
+				@echo "$(DEF_COLOR)"
+				@echo "\n$(BOLD_GREEN)Library cleaned!\n$(DEF_COLOR)"
 
 re:				fclean all
 

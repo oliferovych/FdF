@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 19:21:38 by dolifero          #+#    #+#             */
-/*   Updated: 2024/05/16 20:00:07 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/05/19 17:25:29 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,12 @@ void	parse_file(char *file, t_map *map)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		j = 0;
+		j = -1;
 		splitted = ft_split(line, ' ');
-		while (splitted[j])
+		while (splitted[++j])
 		{
 			map->flat[i][j] = atoi(splitted[j]);
 			free(splitted[j]);
-			j++;
 		}
 		free(line);
 		free(splitted);
@@ -39,4 +38,5 @@ void	parse_file(char *file, t_map *map)
 		i++;
 	}
 	free(line);
+	close(fd);
 }

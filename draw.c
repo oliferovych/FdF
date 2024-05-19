@@ -6,105 +6,75 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 17:48:34 by dolifero          #+#    #+#             */
-/*   Updated: 2024/05/17 15:44:44 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/05/19 20:36:50 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF_head.h"
 
-static void	slope_less_than_1(t_point *a, t_point *b, mlx_image_t *img)
+void	draw_line(mlx_image_t *img, t_point p0, t_point p1, t_map *map)
 {
-	int	p;
-	int	i;
-	int	dx;
-	int	dy;
+	t_bresenham	params;
 
-	dx = b->x - a->x;
-	dy = b->y - a->y;
+	p0.x += map->width / 2;
+	p0.y += map->height / 2;
+	p1.x += map->width / 2;
+	p1.y += map->height / 2;
+	init_line_params(p0, p1, &params);
+	bresenham_line(img, p0, p1, params);
+}
+
+void	draw_horizontal_lines(t_fdf *fdf)
+{
+	int		i;
+	int		j;
+	int		width;
+	t_point	*points;
+
+	points = fdf->points;
+	width = fdf->map.width;
 	i = 0;
-	p = 2 * dy - dx;
-	mlx_put_pixel(img, a->x, a->y, 0xFFFFFFFF);
-	while (i < dx)
+	while (i < fdf->map.height)
 	{
-		a->x += 1;
-		if (p < 0)
-			p = p + 2 * dy;
-		else
+		j = 0;
+		while (j < width - 1)
 		{
-			a->y += 1;
-			p = p + 2 * dy - 2 * dx;
+			draw_line(fdf->img, points[i * width + j], points[i * width + j
+				+ 1], &fdf->map);
+			j++;
 		}
-		mlx_put_pixel(img, a->x, a->y, 0xFFFFFFFF);
 		i++;
 	}
 }
 
-static void	slope_bigger_than_1(t_point *a, t_point *b, mlx_image_t *img)
+void	draw_vertical_lines(t_fdf *fdf)
 {
-	int	p;
-	int	i;
-	int	dx;
-	int	dy;
+	int		i;
+	int		j;
+	int		width;
+	t_point	*points;
 
-	dx = b->x - a->x;
-	dy = b->y - a->y;
+	points = fdf->points;
+	width = fdf->map.width;
 	i = 0;
-	p = 2 * dx - dy;
-	mlx_put_pixel(img, a->x, a->y, 0xFFFFFFFF);
-	while (i < dy)
+	while (i < fdf->map.height - 1)
 	{
-		a->y += 1;
-		if (p < 0)
-			p = p + 2 * dx;
-		else
+		j = 0;
+		while (j < width)
 		{
-			a->x += 1;
-			p = p + 2 * dx - 2 * dy;
+			draw_line(fdf->img, points[i * width + j], points[(i + 1) * width
+				+ j], &fdf->map);
+			j++;
 		}
-		mlx_put_pixel(img, a->x, a->y, 0xFFFFFFFF);
 		i++;
 	}
 }
 
-static void	draw_lines(mlx_image_t *img, t_point *src, t_point *dst)
+void	draw_mesh(void *param)
 {
-	int	dx;
-	int	dy;
+	t_fdf	*fdf;
 
-	dx = dst->x - src->x;
-	dy = dst->y - dst->y;
-	if (abs(dx) > abs(dy))
-		slope_less_than_1(src, dst, img);
-	else
-		slope_bigger_than_1(src, dst, img);
-}
-
-void	draw_map(t_fdf *fdf)
-{
-	int	x;
-	int	y;
-	int	i;
-
-	x = -1;
-	i = 1;
-	while (++x < fdf->map.width)
-	{
-		y = -1;
-		while (++y < fdf->map.height)
-		{
-			draw_lines(fdf->img, &fdf->points[i - 1], &fdf->points[i]);
-			i++;
-		}
-	}
-	y = -1;
-	i = 0;
-	while (++y < fdf->map.height)
-	{
-		x = -1;
-		while (++x < fdf->map.width)
-		{
-			draw_lines(fdf->img, &fdf->points[i - 1], &fdf->points[i]);
-			i++;
-		}
-	}
+	fdf = (t_fdf *)param;
+	draw_horizontal_lines(fdf);
+	draw_vertical_lines(fdf);
 }

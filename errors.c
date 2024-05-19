@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 17:59:52 by dolifero          #+#    #+#             */
-/*   Updated: 2024/05/17 16:16:15 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/05/19 18:48:36 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,10 @@ int	str_is_numerical(char *string)
 	return (1);
 }
 
-void	ft_error(void)
+void	ft_error(t_fdf *fdf)
 {
 	ft_putstr_fd((char *)mlx_strerror(mlx_errno), 2);
+	free_allocations(fdf);
 	exit(EXIT_FAILURE);
 }
 
@@ -46,5 +47,34 @@ int	valid_name(char *name, int argc)
 		return (ft_printf("Usage: ./FdF <filename>.fdf\n"), exit(1), 0);
 	if (!ft_strnstr(name, ".fdf", ft_strlen(name)))
 		return (ft_printf("Usage: ./FdF <filename>.fdf\n"), exit(1), 0);
+	return (1);
+}
+
+int	openfile(int argc, char **argv, t_map *map)
+{
+	char	*line;
+	int		fd;
+
+	map->height = 0;
+	map->width = 0;
+	if (valid_name(argv[1], argc))
+	{
+		fd = open(argv[1], O_RDONLY);
+		line = get_next_line(fd);
+		while (line != NULL && valid_name(argv[1], argc))
+		{
+			if (!str_is_numerical(line))
+				return (free(line), ft_putstr_fd("File error\n", 2), 0);
+			map->width += count_values(line);
+			map->height++;
+			if (map->width / map->height != count_values(line) && line != NULL)
+				return (free(line), ft_putstr_fd("File error\n", 2), 0);
+			free(line);
+			line = get_next_line(fd);
+		}
+		map->width = map->width / map->height;
+		free(line);
+		close(fd);
+	}
 	return (1);
 }
