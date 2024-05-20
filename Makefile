@@ -6,7 +6,7 @@
 #    By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/10 15:54:36 by dolifero          #+#    #+#              #
-#    Updated: 2024/05/19 18:57:40 by dolifero         ###   ########.fr        #
+#    Updated: 2024/05/20 15:06:26 by dolifero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,13 +64,15 @@ libmlx:
 %.o: %.c
 				$(CC) $(CFLAGS) -o $@ -c $< $(HEADERLIBMLX)
 
-$(NAME):		$(OBJS) $(LIBFT) $(MAKELIBMLX)
+$(NAME):		$(MAKELIBMLX) $(OBJS) $(LIBFT)
+				echo hello
 				$(CC) $(OBJS) -Llibft -LMLX42 -lft $(LIBS) $(HEADERS) -o $(NAME)
 
 $(LIBFT):
 				$(MAKE) -C $(LIBFT_DIR)
 
 $(MAKELIBMLX):	$(LIBMLX)
+				echo bye
 				@echo "\n$(BOLD_CYAN)Starting $(BOLD_WHITE)[${LIBMLX}] $(BOLD_CYAN)compilation..$(DEF_COLOR)\n"
 				@mkdir -p $(LIBMLX)/build
 				@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
@@ -78,7 +80,7 @@ $(MAKELIBMLX):	$(LIBMLX)
 
 $(LIBMLX):
 				touch .gitmodules
-				git submodule add -f https://github.com/codam-coding-college/LIBMLX42.git
+				git submodule add -f https://github.com/codam-coding-college/MLX42.git
 
 clean:
 				@echo "$(CYAN)"
