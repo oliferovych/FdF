@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 19:10:03 by dolifero          #+#    #+#             */
-/*   Updated: 2024/05/19 21:07:53 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/05/20 14:28:37 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define HEIGHT 1080
 # define STANDARD_ZOOM 10
 # define STANDARD_FLATTEN 1
-# define STANDARD_ROT_Z 0
+# define STANDARD_ROT 0
 # define STANDARD_MOVE 0
 
 typedef struct s_map
@@ -46,9 +46,13 @@ typedef struct s_fdf
 	char		*title;
 	double		flatten;
 	double		scale;
+	double		rotation_x;
+	double		rotation_y;
 	double		rotation_z;
 	int			move_lr;
 	int			move_du;
+	int			iso;
+	int			ort;
 }				t_fdf;
 
 typedef struct s_bresenham
@@ -76,8 +80,8 @@ void	overlay(t_fdf *fdf);
 void	background(t_fdf *fdf);
 void	ft_3d_to_2d(t_map *map, t_point **points);
 void	points_into_isometric(t_fdf *fdf);
-void	init_line_params(t_point p0, t_point p1, t_bresenham *params);
-void	bresenham_line(mlx_image_t *img, t_point p0, t_point p1,
+void	init_line_params(t_point src, t_point dest, t_bresenham *params);
+void	bresenham_line(mlx_image_t *img, t_point src, t_point dest,
 			t_bresenham params);
 
 // DRAWING
@@ -88,13 +92,15 @@ void	draw_mesh(void *param);
 // HOOKS / CONTROLS
 void	ft_window_hook(void *param);
 void	scale_hook(void *param);
+void	translation_hook(void *param);
+void	move_hook(void *param);
 void	ft_hook(t_fdf *fdf);
 void	reset_img(t_fdf *fdf);
 
 // MATH UTILS
 void	rotate_z(t_point *point, double angle_z);
-void	rotate_y(t_point *point);
-void	rotate_x(t_point *point);
+void	rotate_y(t_point *point, double angle_y);
+void	rotate_x(t_point *point, double angle_x);
 int		count_values(const char *s);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:42:47 by dolifero          #+#    #+#             */
-/*   Updated: 2024/05/19 19:54:40 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/05/20 14:24:35 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,15 @@
 
 void	overlay(t_fdf *fdf)
 {
-	mlx_put_string(fdf->mlx, "Arrow UP/DOWN:    Flatten", 5, 0);
-	mlx_put_string(fdf->mlx, "+/-:         Zoom", 5, 20);
-	mlx_put_string(fdf->mlx, "R:           Reset", 5, 40);
-	mlx_put_string(fdf->mlx, "ESC:         Exit", 5, 80);
+	mlx_put_string(fdf->mlx, "W/S:                   Flatten", 5, 0);
+	mlx_put_string(fdf->mlx, "A/D:                   Rotate around Z-axis",
+		5, 20);
+	mlx_put_string(fdf->mlx, "+/-:                   Zoom", 5, 50);
+	mlx_put_string(fdf->mlx, "Arrow keys:            Move", 5, 80);
+	mlx_put_string(fdf->mlx, "Orthographic:          O", 5, 110);
+	mlx_put_string(fdf->mlx, "Isometric              I", 5, 130);
+	mlx_put_string(fdf->mlx, "R:                     Reset", 5, 160);
+	mlx_put_string(fdf->mlx, "ESC:                   Exit", 5, 180);
 }
 
 void	background(t_fdf *fdf)

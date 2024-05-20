@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 19:09:03 by dolifero          #+#    #+#             */
-/*   Updated: 2024/05/19 21:15:49 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/05/20 14:10:09 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static void	map(int argc, char **argv, t_map *map)
 void	ft_hook(t_fdf *fdf)
 {
 	mlx_loop_hook(fdf->mlx, &scale_hook, fdf);
+	mlx_loop_hook(fdf->mlx, &move_hook, fdf);
+	mlx_loop_hook(fdf->mlx, &translation_hook, fdf);
 	mlx_loop_hook(fdf->mlx, ft_window_hook, fdf->mlx);
 }
 
@@ -39,6 +41,8 @@ static void	draw_image(void *param)
 	ft_3d_to_2d(&fdf->map, &fdf->points);
 	points_into_isometric(fdf);
 	draw_mesh(fdf);
+	if (fdf->points != NULL)
+		free(fdf->points);
 }
 
 int32_t	main(int argc, char **argv)
