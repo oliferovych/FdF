@@ -6,16 +6,16 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 19:09:03 by dolifero          #+#    #+#             */
-/*   Updated: 2024/05/20 14:10:09 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/05/20 15:16:00 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF_head.h"
 
-void	leaks(void)
-{
-	system("leaks FdF");
-}
+// void	leaks(void)
+// {
+// 	system("leaks FdF");
+// }
 
 static void	map(int argc, char **argv, t_map *map)
 {
@@ -49,7 +49,6 @@ int32_t	main(int argc, char **argv)
 {
 	t_fdf	fdf;
 
-	atexit(leaks);
 	map(argc, argv, &fdf.map);
 	fdf.title = ft_strjoin("FdF - ", argv[1]);
 	fdf.mlx = mlx_init(WIDTH, HEIGHT, fdf.title, true);
