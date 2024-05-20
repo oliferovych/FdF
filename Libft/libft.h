@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:48:59 by dolifero          #+#    #+#             */
-/*   Updated: 2024/05/11 19:37:25 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/05/20 15:14:22 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,5 @@ char	*get_next_line(int fd);
 # ifndef GNL_BUFFER_SIZE
 #  define GNL_BUFFER_SIZE 42
 # endif
-
 
 #endif
