@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 17:59:52 by dolifero          #+#    #+#             */
-/*   Updated: 2024/05/19 18:48:36 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/06/01 15:47:53 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ int	openfile(int argc, char **argv, t_map *map)
 				return (free(line), ft_putstr_fd("File error\n", 2), 0);
 			map->width += count_values(line);
 			map->height++;
-			if (map->width / map->height != count_values(line) && line != NULL)
-				return (free(line), ft_putstr_fd("File error\n", 2), 0);
 			free(line);
 			line = get_next_line(fd);
 		}
