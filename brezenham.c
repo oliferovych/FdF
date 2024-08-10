@@ -6,11 +6,17 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 18:24:08 by dolifero          #+#    #+#             */
-/*   Updated: 2024/05/20 14:29:39 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/08/10 22:07:07 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF_head.h"
+
+void	my_put_pixel(mlx_image_t *img, int x, int y, int color)
+{
+	if (x < WIDTH && y < HEIGHT && x >= 0 && y >= 0)
+		mlx_put_pixel(img, x, y, color);
+}
 
 void	init_line_params(t_point src, t_point dest, t_bresenham *params)
 {
@@ -34,11 +40,7 @@ void	bresenham_line(mlx_image_t *img, t_point src, t_point dest,
 
 	while (1)
 	{
-		if (src.x >= WIDTH || src.y >= HEIGHT || dest.x >= WIDTH
-			|| dest.y >= HEIGHT || src.x < 0 || src.y < 0 || dest.x < 0
-			|| dest.y < 0)
-			break ;
-		mlx_put_pixel(img, src.x, src.y, 0xFFFFFFFF);
+		my_put_pixel(img, src.x, src.y, 0xFFFFFFFF);
 		if (src.x == dest.x && src.y == dest.y)
 			break ;
 		e2 = params.err * 2;
