@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:10:09 by dolifero          #+#    #+#             */
-/*   Updated: 2024/03/08 15:36:54 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/08/10 21:53:11 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@ int	ft_atoi(const char *str)
 {
 	int	i;
 	int	negativity;
-	int	strsize;
 	int	result;
 
 	negativity = 1;
 	i = 0;
-	strsize = sizeof(str);
 	result = 0;
 	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t'
 		|| str[i] == '\r' || str[i] == '\v' || str[i] == '\f')

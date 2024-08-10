@@ -6,7 +6,7 @@
 #    By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/07 14:48:30 by dolifero          #+#    #+#              #
-#    Updated: 2024/05/02 15:03:48 by dolifero         ###   ########.fr        #
+#    Updated: 2024/08/10 21:50:29 by dolifero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,9 +87,8 @@ MAGENTA		=	\033[0;95m
 CYAN		=	\033[2;96m
 WHITE		=	\033[0;97m
 
-all:
+all:			$(NAME)
 				@echo "\n$(BOLD_CYAN)Starting $(BOLD_WHITE)[${NAME}] $(BOLD_CYAN)compilation..$(DEF_COLOR)\n"
-				@Make ${NAME}
 				@echo "\n$(BOLD_GREEN)${NAME} DONE!\n$(DEF_COLOR)"
 
 $(NAME):		$(OBJS)
