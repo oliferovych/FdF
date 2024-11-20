@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 16:21:06 by dolifero          #+#    #+#             */
-/*   Updated: 2024/05/20 14:09:14 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/11/20 03:57:19 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,13 @@ void	translation_hook(void *param)
 	fdf = (t_fdf *)param;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_O))
 	{
+		reset_img(fdf);
 		fdf->ort = 1;
 		fdf->iso = 0;
 	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_I))
 	{
+		reset_img(fdf);
 		fdf->ort = 0;
 		fdf->iso = 1;
 	}
