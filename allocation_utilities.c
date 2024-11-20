@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 18:40:21 by dolifero          #+#    #+#             */
-/*   Updated: 2024/05/20 15:14:38 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/11/20 05:22:29 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,25 @@ void	ft_allocate_map(t_map *map)
 	int	i;
 
 	i = 0;
-	map->flat = (int **)malloc(sizeof(int *) * map->height);
+	map->points = (t_point **)malloc(sizeof(t_point *) * map->height);
 	while (i != map->height)
 	{
-		map->flat[i] = (int *)malloc(sizeof(int) * map->width);
+		map->points[i] = (t_point *)malloc(sizeof(t_point) * map->width);
 		i++;
 	}
+}
+
+void	free_points_copy(t_fdf *fdf)
+{
+	int	i;
+
+	i = fdf->map.height;
+	while (i > 0)
+	{
+		free(fdf->points[i - 1]);
+		i--;
+	}
+	free(fdf->points);
 }
 
 void	free_allocations(t_fdf *fdf)
@@ -32,9 +45,33 @@ void	free_allocations(t_fdf *fdf)
 	i = fdf->map.height;
 	while (i > 0)
 	{
-		free(fdf->map.flat[i - 1]);
+		free(fdf->map.points[i - 1]);
 		i--;
 	}
-	free(fdf->map.flat);
+	free(fdf->map.points);
 	free(fdf->title);
 }
+
+t_point **ft_copy_points(t_map *map)
+{
+	t_point	**points;
+	int		i;
+	int		j;
+
+	i = 0;
+	points = (t_point **)malloc(sizeof(t_point *) * map->height);
+	while (i < map->height)
+	{
+		j = 0;
+		points[i] = (t_point *)malloc(sizeof(t_point) * map->width);
+		while (j < map->width)
+		{
+			points[i][j] = map->points[i][j];
+			j++;
+		}
+		i++;
+	}
+	return (points);
+}
+
+
