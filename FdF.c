@@ -6,21 +6,17 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 19:09:03 by dolifero          #+#    #+#             */
-/*   Updated: 2024/05/20 17:01:41 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/11/20 06:12:40 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF_head.h"
 
-// void	leaks(void)
-// {
-// 	system("leaks FdF");
-// }
-
 static void	map(int argc, char **argv, t_map *map)
 {
 	if (!openfile(argc, argv, map))
 		return (exit(1));
+	ft_printf("Map loaded\n");
 	ft_allocate_map(map);
 	parse_file(argv[1], map);
 }
@@ -38,11 +34,12 @@ static void	draw_image(void *param)
 	t_fdf	*fdf;
 
 	fdf = (t_fdf *)param;
-	ft_3d_to_2d(&fdf->map, &fdf->points);
+	fdf->points = ft_copy_points(&fdf->map);
 	points_into_isometric(fdf);
+	background(fdf);
 	draw_mesh(fdf);
-	if (fdf->points != NULL)
-		free(fdf->points);
+	if(fdf->points != NULL)
+		free_points_copy(fdf);
 }
 
 int32_t	main(int argc, char **argv)

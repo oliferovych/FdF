@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 19:10:03 by dolifero          #+#    #+#             */
-/*   Updated: 2024/05/20 14:28:37 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/11/20 05:23:38 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,26 +23,27 @@
 # define STANDARD_ROT 0
 # define STANDARD_MOVE 0
 
-typedef struct s_map
-{
-	int	width;
-	int	height;
-	int	**flat;
-}				t_map;
-
 typedef struct s_point
 {
-	int	x;
-	int	y;
-	int	z;
+	int				x;
+	int				y;
+	int				z;
+	unsigned int	color;
 }				t_point;
+
+typedef struct s_map
+{
+	int		width;
+	int		height;
+	t_point	**points;
+}				t_map;
 
 typedef struct s_fdf
 {
 	t_map		map;
 	mlx_t		*mlx;
 	mlx_image_t	*img;
-	t_point		*points;
+	t_point		**points;
 	char		*title;
 	double		flatten;
 	double		scale;
@@ -68,6 +69,8 @@ typedef struct s_bresenham
 void	ft_allocate_map(t_map *map);
 void	parse_file(char *file, t_map *map);
 void	free_allocations(t_fdf *fdf);
+t_point	**ft_copy_points(t_map *map);
+void	free_points_copy(t_fdf *fdf);
 
 // ERROR CHECKS
 int		openfile(int argc, char **argv, t_map *map);
@@ -78,7 +81,7 @@ int		valid_name(char *name, int argc);
 // IMAGE UTILITIES
 void	overlay(t_fdf *fdf);
 void	background(t_fdf *fdf);
-void	ft_3d_to_2d(t_map *map, t_point **points);
+// void	ft_3d_to_2d(t_map *map, t_point **points);
 void	points_into_isometric(t_fdf *fdf);
 void	init_line_params(t_point src, t_point dest, t_bresenham *params);
 void	bresenham_line(mlx_image_t *img, t_point src, t_point dest,
