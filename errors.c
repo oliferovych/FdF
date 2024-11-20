@@ -6,42 +6,53 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 17:59:52 by dolifero          #+#    #+#             */
-/*   Updated: 2024/06/01 15:47:53 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/11/20 06:13:05 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF_head.h"
 
-int	str_is_numerical(char *string)
+int ft_isdigit(int c)
 {
-	int	i;
+	return (c >= '0' && c <= '9');
+}
+
+int str_is_numerical(char *string)
+{
+	int i;
 
 	i = 0;
-	if (string[0] == ' ')
-		return (0);
-	while ((string[i] >= '0' && string[i] <= '9') || (string[i] == '-'
-			&& (string[i + 1] >= '0' && string[i + 1] <= '9'))
-		|| (string[i] == '+' && (string[i + 1] >= '0' && string[i + 1] <= '9'))
-		|| string[i] == ' ' || string[i] == ',')
+	while (string[i] && string[i] != '\n')
 	{
-		if (string[i] == ',')
-			while (string[i] != ' ' || string[i] != '\n')
+		if (ft_isdigit(string[i]) ||
+			(string[i] == '-' && ft_isdigit(string[i + 1])) ||
+			(string[i] == '+' && ft_isdigit(string[i + 1])) ||
+			string[i] == ' ' ||
+			string[i] == ',')
+		{
+			if (string[i] == ',')
+			{
 				i++;
-		i++;
+				while (string[i] && string[i] != ' ' && string[i] != '\n')
+					i++;
+			}
+			else
+				i++;
+		}
+		else
+			return 0;
 	}
-	if (i != ft_strlen(string) - 1)
-		return (0);
 	return (1);
 }
 
-void	ft_error(t_fdf *fdf)
+void ft_error(t_fdf *fdf)
 {
 	ft_putstr_fd((char *)mlx_strerror(mlx_errno), 2);
 	free_allocations(fdf);
 	exit(EXIT_FAILURE);
 }
 
-int	valid_name(char *name, int argc)
+int valid_name(char *name, int argc)
 {
 	if (argc != 2)
 		return (ft_printf("Usage: ./FdF <filename>.fdf\n"), exit(1), 0);
@@ -50,10 +61,10 @@ int	valid_name(char *name, int argc)
 	return (1);
 }
 
-int	openfile(int argc, char **argv, t_map *map)
+int openfile(int argc, char **argv, t_map *map)
 {
-	char	*line;
-	int		fd;
+	char *line;
+	int fd;
 
 	map->height = 0;
 	map->width = 0;
@@ -74,5 +85,6 @@ int	openfile(int argc, char **argv, t_map *map)
 		free(line);
 		close(fd);
 	}
+	ft_printf("%i, %i\n", map->width, map->height);
 	return (1);
 }

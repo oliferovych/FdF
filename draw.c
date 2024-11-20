@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 17:48:34 by dolifero          #+#    #+#             */
-/*   Updated: 2024/05/20 13:28:40 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/11/20 06:12:08 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,16 @@ void	draw_horizontal_lines(t_fdf *fdf)
 {
 	int		i;
 	int		j;
-	int		width;
-	t_point	*points;
+	t_point	**points;
 
 	points = fdf->points;
-	width = fdf->map.width;
 	i = 0;
 	while (i < fdf->map.height)
 	{
 		j = 0;
-		while (j < width - 1)
+		while (j < fdf->map.width - 1)
 		{
-			draw_line(fdf->img, points[i * width + j], points[i * width + j
-				+ 1], &fdf->map);
+			draw_line(fdf->img, points[i][j], points[i][j + 1], &fdf->map);
 			j++;
 		}
 		i++;
@@ -51,19 +48,16 @@ void	draw_vertical_lines(t_fdf *fdf)
 {
 	int		i;
 	int		j;
-	int		width;
-	t_point	*points;
+	t_point	**points;
 
 	points = fdf->points;
-	width = fdf->map.width;
 	i = 0;
 	while (i < fdf->map.height - 1)
 	{
 		j = 0;
-		while (j < width)
+		while (j < fdf->map.width)
 		{
-			draw_line(fdf->img, points[i * width + j], points[(i + 1) * width
-				+ j], &fdf->map);
+			draw_line(fdf->img, points[i][j], points[i + 1][j], &fdf->map);
 			j++;
 		}
 		i++;
