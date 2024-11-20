@@ -6,35 +6,11 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:31:42 by dolifero          #+#    #+#             */
-/*   Updated: 2024/05/20 14:12:43 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/11/20 06:21:25 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF_head.h"
-
-void	ft_3d_to_2d(t_map *map, t_point **points)
-{
-	int	i;
-	int	j;
-	int	k;
-
-	i = 0;
-	k = 0;
-	*points = malloc(sizeof(t_point) * (map->width * map->height));
-	while (i < map->height)
-	{
-		j = 0;
-		while (j < map->width)
-		{
-			(*points)[k].x = j + 1;
-			(*points)[k].y = i + 1;
-			(*points)[k].z = map->flat[i][j];
-			j++;
-			k++;
-		}
-		i++;
-	}
-}
 
 void	project(t_point *point)
 {
@@ -52,26 +28,31 @@ void	project(t_point *point)
 void	points_into_isometric(t_fdf	*fdf)
 {
 	int		i;
-	t_point	*points;
+	int 	j;
+	t_point	**points;
 
 	points = fdf->points;
 	i = 0;
-	background(fdf);
-	while (i < fdf->map.height * fdf->map.width)
+	while (i < fdf->map.height)
 	{
-		points[i].z /= fdf->flatten;
-		points[i].x *= fdf->scale;
-		points[i].y *= fdf->scale;
-		points[i].z *= fdf->scale;
-		rotate_x(&points[i], fdf->rotation_x);
-		rotate_y(&points[i], fdf->rotation_y);
-		rotate_z(&points[i], fdf->rotation_z);
-		if (fdf->iso == 1)
-			project(&points[i]);
-		points[i].x += WIDTH / 2 - (fdf->map.width * fdf->scale) / 2;
-		points[i].y += HEIGHT / 2 - (fdf->map.height * fdf->scale) / 2;
-		points[i].x += fdf->move_lr;
-		points[i].y += fdf->move_du;
+		j = 0;
+		while(j < fdf->map.width)
+		{
+			points[i][j].z /= fdf->flatten;
+			points[i][j].x *= fdf->scale;
+			points[i][j].y *= fdf->scale;
+			points[i][j].z *= fdf->scale;
+			rotate_x(&points[i][j], fdf->rotation_x);
+			rotate_y(&points[i][j], fdf->rotation_y);
+			rotate_z(&points[i][j], fdf->rotation_z);
+			if (fdf->iso == 1)
+				project(&points[i][j]);
+			points[i][j].x += WIDTH / 2 - (fdf->map.width * fdf->scale) / 2;
+			points[i][j].y += HEIGHT / 2 - (fdf->map.height * fdf->scale) / 2;
+			points[i][j].x += fdf->move_lr;
+			points[i][j].y += fdf->move_du;
+			j++;
+		}
 		i++;
 	}
 }
