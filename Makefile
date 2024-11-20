@@ -6,7 +6,7 @@
 #    By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/10 15:54:36 by dolifero          #+#    #+#              #
-#    Updated: 2024/05/20 15:13:45 by dolifero         ###   ########.fr        #
+#    Updated: 2024/08/10 21:43:44 by dolifero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,9 +52,8 @@ MAGENTA		=	\033[0;95m
 CYAN		=	\033[2;96m
 WHITE		=	\033[0;97m
 
-all:
+all:			$(NAME)
 				@echo "\n$(BOLD_CYAN)Starting $(BOLD_WHITE)[${NAME}] $(BOLD_CYAN)compilation..$(DEF_COLOR)\n"
-				@Make $(NAME)
 				@echo "\n$(BOLD_GREEN)${NAME} DONE!\n$(DEF_COLOR)"
 
 libmlx:
