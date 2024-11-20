@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:42:47 by dolifero          #+#    #+#             */
-/*   Updated: 2024/11/20 04:35:56 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/11/21 00:24:36 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ void	overlay(t_fdf *fdf)
 		5, 20);
 	mlx_put_string(fdf->mlx, "+/-:                   Zoom", 5, 50);
 	mlx_put_string(fdf->mlx, "Arrow keys:            Move", 5, 80);
-	mlx_put_string(fdf->mlx, "Orthographic:          O", 5, 110);
-	mlx_put_string(fdf->mlx, "Isometric              I", 5, 130);
-	mlx_put_string(fdf->mlx, "R:                     Reset", 5, 160);
-	mlx_put_string(fdf->mlx, "ESC:                   Exit", 5, 180);
+	mlx_put_string(fdf->mlx, "O:                     Orthographic", 5, 110);
+	mlx_put_string(fdf->mlx, "I:                     Isometric", 5, 130);
+	mlx_put_string(fdf->mlx, "1-4:                   Background", 5, 160);
+	mlx_put_string(fdf->mlx, "R:                     Reset", 5, 190);
+	mlx_put_string(fdf->mlx, "ESC:                   Exit", 5, 210);
 }
 
 void	background(t_fdf *fdf)
@@ -35,6 +36,6 @@ void	background(t_fdf *fdf)
 	{
 		j = -1;
 		while (++j < WIDTH)
-			mlx_put_pixel((*fdf).img, j, i, 0x6BACCFA5);
+			mlx_put_pixel((*fdf).img, j, i, fdf->bg_color);
 	}
 }

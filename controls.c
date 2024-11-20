@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 16:21:06 by dolifero          #+#    #+#             */
-/*   Updated: 2024/11/20 03:57:19 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/11/21 00:04:35 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	reset_img(t_fdf *fdf)
 	fdf->rotation_x = STANDARD_ROT;
 	fdf->rotation_y = STANDARD_ROT;
 	fdf->rotation_z = STANDARD_ROT;
+	fdf->bg_color = BG_1;
 	fdf->iso = 1;
 }
 
@@ -46,10 +47,10 @@ void	scale_hook(void *param)
 		fdf->flatten -= 0.1;
 	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_S))
 		fdf->flatten += 0.1;
-	if (fdf->flatten > 10)
-		fdf->flatten = 10;
-	if (fdf->flatten < 0)
-		fdf->flatten = 0;
+	if (fdf->flatten > 5)
+		fdf->flatten = 5;
+	if (fdf->flatten < 0.5)
+		fdf->flatten = 0.5;
 	if (fdf->iso == 1)
 	{
 		if (mlx_is_key_down(fdf->mlx, MLX_KEY_A))
@@ -74,6 +75,14 @@ void	move_hook(void *param)
 		fdf->move_du += 10;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_R))
 		reset_img(fdf);
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_1))
+		fdf->bg_color = BG_1, background(fdf);
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_2))
+		fdf->bg_color = BG_2, background(fdf);
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_3))
+		fdf->bg_color = BG_3, background(fdf);
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_4))
+		fdf->bg_color = BG_4, background(fdf);
 }
 
 void	translation_hook(void *param)

@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 19:10:03 by dolifero          #+#    #+#             */
-/*   Updated: 2024/11/20 05:23:38 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/11/21 00:21:57 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@
 # define STANDARD_FLATTEN 1
 # define STANDARD_ROT 0
 # define STANDARD_MOVE 0
+# define BG_1 0x6BACCFA5
+# define BG_2 0x000000A5
+# define BG_3 0xFFFFFFA5
+# define BG_4 0x180161A5
 
 typedef struct s_point
 {
@@ -40,20 +44,21 @@ typedef struct s_map
 
 typedef struct s_fdf
 {
-	t_map		map;
-	mlx_t		*mlx;
-	mlx_image_t	*img;
-	t_point		**points;
-	char		*title;
-	double		flatten;
-	double		scale;
-	double		rotation_x;
-	double		rotation_y;
-	double		rotation_z;
-	int			move_lr;
-	int			move_du;
-	int			iso;
-	int			ort;
+	t_map			map;
+	mlx_t			*mlx;
+	mlx_image_t		*img;
+	t_point			**points;
+	char			*title;
+	double			flatten;
+	double			scale;
+	double			rotation_x;
+	double			rotation_y;
+	double			rotation_z;
+	int				move_lr;
+	int				move_du;
+	int				iso;
+	int				ort;
+	unsigned int	bg_color;
 }				t_fdf;
 
 typedef struct s_bresenham
