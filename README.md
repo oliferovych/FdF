@@ -13,11 +13,18 @@ in which all surfaces are outlined in lines.*
 ## Key features:
  - A wireframe model, that is able to load huge maps;
  - Supports hexadecimal RGB colors (must be formatted [point,0xcolor];
- - User can zoom, move, rotate, change the projection type and even altitude of the points.
+ - User can zoom, move, rotate, change the projection type and altitude of the points.
  - Has 4 different background colors;
 
 ## Map 42.fdf
-![image](https://github.com/user-attachments/assets/f2f9c5af-3028-40a7-bd40-9e2ad2214b10) ![image](https://github.com/user-attachments/assets/116bb10e-1576-4b5d-aa60-7db958111a7d) ![image](https://github.com/user-attachments/assets/9ef2dc13-adc0-4f78-a2ef-ab7662c3c34f) ![image](https://github.com/user-attachments/assets/a694a8f1-d423-467e-bf45-151455037170)
+![image](https://github.com/user-attachments/assets/a694a8f1-d423-467e-bf45-151455037170)
+![image](https://github.com/user-attachments/assets/b2f8ebf7-135b-493e-9091-99224e7013c9)
+![image](https://github.com/user-attachments/assets/116bb10e-1576-4b5d-aa60-7db958111a7d)
+![image](https://github.com/user-attachments/assets/f2f9c5af-3028-40a7-bd40-9e2ad2214b10)
+
+## Mars.fdf
+![image](https://github.com/user-attachments/assets/18229124-ada7-4271-b5f5-ed222ff88e51)
+![image](https://github.com/user-attachments/assets/4b2c6d23-4ddd-415c-b48c-31ab443df04f)
 
 ## Elem-fract.fdf
 ![image](https://github.com/user-attachments/assets/e7fb9efc-fadc-413b-aa4e-d6a92f86f3ea)
@@ -36,3 +43,8 @@ in which all surfaces are outlined in lines.*
 ![image](https://github.com/user-attachments/assets/f3c43079-759c-4190-93c4-059128a75b23)
 ![image](https://github.com/user-attachments/assets/888ea66d-200b-4022-b6fc-789bf6cf7102)
 ![image](https://github.com/user-attachments/assets/a36a13f6-b365-4a5a-a902-fc0ee2ca22f4)
+
+## Brazil.fdf
+![image](https://github.com/user-attachments/assets/977afff1-2190-4d75-a909-ce96b3cf8578)
+![image](https://github.com/user-attachments/assets/a8c29a72-16a6-4b90-888a-5ca627926a2c)
+
