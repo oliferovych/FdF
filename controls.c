@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 16:21:06 by dolifero          #+#    #+#             */
-/*   Updated: 2024/11/21 01:53:19 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/11/21 13:22:59 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ void	scale_hook(void *param)
 
 	fdf = (t_fdf *)param;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_KP_ADD))
-		fdf->scale += 3;
+		fdf->scale += scale_calc(fdf->scale);
 	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_KP_SUBTRACT))
-		fdf->scale -= 3;
+		fdf->scale -= scale_calc(fdf->scale);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_W))
 		fdf->flatten -= 0.1;
 	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_S))

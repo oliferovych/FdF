@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 19:10:03 by dolifero          #+#    #+#             */
-/*   Updated: 2024/11/21 12:52:35 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/11/21 13:21:22 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_fdf
 	t_point			**points;
 	char			*title;
 	double			flatten;
-	int				scale;
+	double			scale;
 	double			rotation_x;
 	double			rotation_y;
 	double			rotation_z;
@@ -113,6 +113,7 @@ void	rotate_z(t_point *point, double angle_z);
 void	rotate_y(t_point *point, double angle_y);
 void	rotate_x(t_point *point, double angle_x);
 unsigned int	hex_to_uint(const char *hex_str);
+double	scale_calc(double scale);
 int		count_values(const char *s);
 
 #endif

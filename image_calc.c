@@ -6,11 +6,24 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:31:42 by dolifero          #+#    #+#             */
-/*   Updated: 2024/11/21 01:40:44 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/11/21 13:21:58 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF_head.h"
+
+double	scale_calc(double scale)
+{
+	if(scale < 4)
+		return (1);
+	if(scale < 2)
+		return (0.5);
+	if(scale < 1)
+		return (0.25);
+	if(scale < 0.5)
+		return (0);
+	return (2);
+}
 
 void	project(t_point *point)
 {
