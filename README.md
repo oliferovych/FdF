@@ -29,5 +29,10 @@ in which all surfaces are outlined in lines.*
 
 ## Julia.fdf
 ![image](https://github.com/user-attachments/assets/fbb1562f-7fad-43ab-abc3-9fef8e57996d)
+![image](https://github.com/user-attachments/assets/15bd3df5-e905-40b1-986f-a57ae2fbe220)
 ![image](https://github.com/user-attachments/assets/5815960d-54c9-4c3f-aee0-1c32c8abaa2f)
 
+## T1-2.fdf
+![image](https://github.com/user-attachments/assets/f3c43079-759c-4190-93c4-059128a75b23)
+![image](https://github.com/user-attachments/assets/888ea66d-200b-4022-b6fc-789bf6cf7102)
+![image](https://github.com/user-attachments/assets/a36a13f6-b365-4a5a-a902-fc0ee2ca22f4)
