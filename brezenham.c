@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 18:24:08 by dolifero          #+#    #+#             */
-/*   Updated: 2024/11/21 00:30:42 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/11/21 01:47:42 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	bresenham_line(mlx_image_t *img, t_point src, t_point dest,
 	int				e2;
 	unsigned int	color;
 
-	color = 0xFFFFFFFF;
+	color = params.color;
 	if (src.color < 0xFFFFFFFF)
 		color = src.color;
 	else if (dest.color < 0xFFFFFFFF)

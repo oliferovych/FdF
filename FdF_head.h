@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 19:10:03 by dolifero          #+#    #+#             */
-/*   Updated: 2024/11/21 01:32:26 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/11/21 01:52:52 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,12 @@
 # define STANDARD_FLATTEN 1
 # define STANDARD_ROT 0
 # define STANDARD_MOVE 0
-# define BG_1 0x6BACCFA5
+# define BG_1 0x180161A5
 # define BG_2 0x000000A5
 # define BG_3 0xFFFFFFA5
-# define BG_4 0x180161A5
+# define BG_4 0x6BACCFA5
+# define STANDARD_COLOR1 0xFFFFFFFF
+# define STANDARD_COLOR2 0x000000FF
 
 typedef struct s_point
 {
@@ -59,15 +61,17 @@ typedef struct s_fdf
 	int				iso;
 	int				ort;
 	unsigned int	bg_color;
+	unsigned int	standard_color;
 }				t_fdf;
 
 typedef struct s_bresenham
 {
-	int	dx;
-	int	dy;
-	int	sx;
-	int	sy;
-	int	err;
+	int				dx;
+	int				dy;
+	int				sx;
+	int				sy;
+	int				err;
+	unsigned int	color;
 }				t_bresenham;
 
 // MAP INIT
@@ -86,7 +90,6 @@ int		valid_name(char *name, int argc);
 // IMAGE UTILITIES
 void	overlay(t_fdf *fdf);
 void	background(t_fdf *fdf);
-// void	ft_3d_to_2d(t_map *map, t_point **points);
 void	points_into_isometric(t_fdf *fdf);
 void	init_line_params(t_point src, t_point dest, t_bresenham *params);
 void	bresenham_line(mlx_image_t *img, t_point src, t_point dest,

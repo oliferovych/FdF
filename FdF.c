@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 19:09:03 by dolifero          #+#    #+#             */
-/*   Updated: 2024/11/21 01:19:59 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/11/21 01:46:21 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int32_t	main(int argc, char **argv)
 		ft_error(&fdf);
 	fdf.img = mlx_new_image(fdf.mlx, WIDTH, HEIGHT);
 	fdf.bg_color = BG_1;
+	fdf.standard_color = STANDARD_COLOR1;
 	reset_img(&fdf);
 	overlay(&fdf);
 	ft_hook(&fdf);

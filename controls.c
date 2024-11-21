@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 16:21:06 by dolifero          #+#    #+#             */
-/*   Updated: 2024/11/21 01:33:03 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/11/21 01:53:19 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,17 @@ void	move_hook(void *param)
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_R))
 		reset_img(fdf);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_1))
-		fdf->bg_color = BG_1, background(fdf);
+		fdf->bg_color = BG_1;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_2))
-		fdf->bg_color = BG_2, background(fdf);
+		fdf->bg_color = BG_2;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_3))
-		fdf->bg_color = BG_3, background(fdf);
+		fdf->bg_color = BG_3;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_4))
-		fdf->bg_color = BG_4, background(fdf);
+		fdf->bg_color = BG_4;
+	if (fdf->bg_color == BG_3)
+		fdf->standard_color = STANDARD_COLOR2;
+	else
+		fdf->standard_color = STANDARD_COLOR1;
 }
 
 void	translation_hook(void *param)
