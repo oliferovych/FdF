@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 16:21:06 by dolifero          #+#    #+#             */
-/*   Updated: 2024/11/21 00:04:35 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/11/21 01:33:03 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	reset_img(t_fdf *fdf)
 	fdf->rotation_x = STANDARD_ROT;
 	fdf->rotation_y = STANDARD_ROT;
 	fdf->rotation_z = STANDARD_ROT;
-	fdf->bg_color = BG_1;
 	fdf->iso = 1;
 }
 
@@ -49,8 +48,10 @@ void	scale_hook(void *param)
 		fdf->flatten += 0.1;
 	if (fdf->flatten > 5)
 		fdf->flatten = 5;
-	if (fdf->flatten < 0.5)
-		fdf->flatten = 0.5;
+	if (fdf->flatten < 0.2)
+		fdf->flatten = 0.2;
+	if (fdf->scale < 1)
+		fdf->scale = 1;
 	if (fdf->iso == 1)
 	{
 		if (mlx_is_key_down(fdf->mlx, MLX_KEY_A))
