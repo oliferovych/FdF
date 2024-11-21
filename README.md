@@ -1,6 +1,8 @@
 # FdF (fil de fer)
 > A simple wireframe model
 
+![image](https://github.com/user-attachments/assets/3979b1e9-cb94-4ea3-8d59-103619d6515b)
+
 ***Summary:***  *This project is about representing a landscape as a 3D object
 in which all surfaces are outlined in lines.*
 
@@ -48,3 +50,6 @@ in which all surfaces are outlined in lines.*
 ![image](https://github.com/user-attachments/assets/977afff1-2190-4d75-a909-ce96b3cf8578)
 ![image](https://github.com/user-attachments/assets/a8c29a72-16a6-4b90-888a-5ca627926a2c)
 
+## Renaissance.fdf
+![image](https://github.com/user-attachments/assets/ead99a24-e10a-4e48-b8c8-2cabec07aa38)
+![image](https://github.com/user-attachments/assets/436cf53d-79ee-4fb4-9fca-f38fe2743d76)
