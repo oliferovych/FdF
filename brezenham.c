@@ -6,19 +6,19 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 18:24:08 by dolifero          #+#    #+#             */
-/*   Updated: 2024/11/20 06:34:20 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/11/21 00:30:42 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF_head.h"
 
-void my_put_pixel(mlx_image_t *img, int x, int y, unsigned int color)
+void	my_put_pixel(mlx_image_t *img, int x, int y, unsigned int color)
 {
 	if (x < WIDTH && y < HEIGHT && x >= 0 && y >= 0)
 		mlx_put_pixel(img, x, y, color);
 }
 
-void init_line_params(t_point src, t_point dest, t_bresenham *params)
+void	init_line_params(t_point src, t_point dest, t_bresenham *params)
 {
 	params->dx = abs(dest.x - src.x);
 	params->dy = abs(dest.y - src.y);
@@ -33,23 +33,22 @@ void init_line_params(t_point src, t_point dest, t_bresenham *params)
 	params->err = params->dx - params->dy;
 }
 
-void bresenham_line(mlx_image_t *img, t_point src, t_point dest,
+void	bresenham_line(mlx_image_t *img, t_point src, t_point dest,
 					t_bresenham params)
 {
-	int	e2;
+	int				e2;
 	unsigned int	color;
 
-	if(src.color < 0xFFFFFFFF)
+	color = 0xFFFFFFFF;
+	if (src.color < 0xFFFFFFFF)
 		color = src.color;
 	else if (dest.color < 0xFFFFFFFF)
 		color = dest.color;
-	else
-		color = 0xFFFFFFFF;
 	while (1)
 	{
 		my_put_pixel(img, src.x, src.y, color);
 		if (src.x == dest.x && src.y == dest.y)
-			break;
+			break ;
 		e2 = params.err * 2;
 		if (e2 > -params.dy)
 		{

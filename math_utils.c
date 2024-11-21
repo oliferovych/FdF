@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:36:11 by dolifero          #+#    #+#             */
-/*   Updated: 2024/11/20 06:10:40 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/11/21 01:14:50 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	count_values(const char *s)
 		{
 			values++;
 			while (s[i] && s[i] != ' ' && s[i] != '\n')
-					i++;
+				i++;
 		}
 		else
 			i++;

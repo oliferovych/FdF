@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 19:09:03 by dolifero          #+#    #+#             */
-/*   Updated: 2024/11/21 00:21:13 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/11/21 01:19:59 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ static void	map(int argc, char **argv, t_map *map)
 {
 	if (!openfile(argc, argv, map))
 		return (exit(1));
-	ft_printf("Map loaded\n");
 	ft_allocate_map(map);
 	parse_file(argv[1], map);
+	ft_printf("Map loaded\n");
 }
 
 void	ft_hook(t_fdf *fdf)
@@ -38,7 +38,7 @@ static void	draw_image(void *param)
 	points_into_isometric(fdf);
 	background(fdf);
 	draw_mesh(fdf);
-	if(fdf->points != NULL)
+	if (fdf->points != NULL)
 		free_points_copy(fdf);
 }
 
@@ -52,6 +52,7 @@ int32_t	main(int argc, char **argv)
 	if (!fdf.mlx)
 		ft_error(&fdf);
 	fdf.img = mlx_new_image(fdf.mlx, WIDTH, HEIGHT);
+	fdf.bg_color = BG_1;
 	reset_img(&fdf);
 	overlay(&fdf);
 	ft_hook(&fdf);

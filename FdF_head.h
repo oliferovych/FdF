@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 19:10:03 by dolifero          #+#    #+#             */
-/*   Updated: 2024/11/21 00:21:57 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/11/21 01:32:26 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct s_fdf
 	t_point			**points;
 	char			*title;
 	double			flatten;
-	double			scale;
+	int				scale;
 	double			rotation_x;
 	double			rotation_y;
 	double			rotation_z;

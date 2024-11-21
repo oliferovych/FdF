@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 18:40:21 by dolifero          #+#    #+#             */
-/*   Updated: 2024/11/20 05:22:29 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/11/21 01:29:22 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,17 @@ void	free_allocations(t_fdf *fdf)
 {
 	int	i;
 
-	i = fdf->map.height;
-	while (i > 0)
+	i = 0;
+	while (i < fdf->map.height)
 	{
-		free(fdf->map.points[i - 1]);
-		i--;
+		free(fdf->map.points[i]);
+		i++;
 	}
 	free(fdf->map.points);
 	free(fdf->title);
 }
 
-t_point **ft_copy_points(t_map *map)
+t_point	**ft_copy_points(t_map *map)
 {
 	t_point	**points;
 	int		i;
@@ -73,5 +73,3 @@ t_point **ft_copy_points(t_map *map)
 	}
 	return (points);
 }
-
-

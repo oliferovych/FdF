@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:31:42 by dolifero          #+#    #+#             */
-/*   Updated: 2024/11/20 06:21:25 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/11/21 00:38:41 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,19 @@ void	project(t_point *point)
 void	points_into_isometric(t_fdf	*fdf)
 {
 	int		i;
-	int 	j;
+	int		j;
 	t_point	**points;
 
 	points = fdf->points;
-	i = 0;
-	while (i < fdf->map.height)
+	i = -1;
+	while (++i < fdf->map.height)
 	{
-		j = 0;
-		while(j < fdf->map.width)
+		j = -1;
+		while (++j < fdf->map.width)
 		{
-			points[i][j].z /= fdf->flatten;
+			points[i][j].z =  (points[i][j].z / fdf->flatten) * fdf->scale;
 			points[i][j].x *= fdf->scale;
 			points[i][j].y *= fdf->scale;
-			points[i][j].z *= fdf->scale;
 			rotate_x(&points[i][j], fdf->rotation_x);
 			rotate_y(&points[i][j], fdf->rotation_y);
 			rotate_z(&points[i][j], fdf->rotation_z);
@@ -51,8 +50,6 @@ void	points_into_isometric(t_fdf	*fdf)
 			points[i][j].y += HEIGHT / 2 - (fdf->map.height * fdf->scale) / 2;
 			points[i][j].x += fdf->move_lr;
 			points[i][j].y += fdf->move_du;
-			j++;
 		}
-		i++;
 	}
 }
