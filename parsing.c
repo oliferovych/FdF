@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 19:21:38 by dolifero          #+#    #+#             */
-/*   Updated: 2024/11/21 01:27:38 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/11/21 13:02:56 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_point	parse_point(char *str, int i, int j)
 	split = ft_split(str, ',');
 	point.z = ft_atoi(split[0]);
 	split[1] = parse_color(split[1]);
-	point.color = (unsigned int)strtoul(split[1], NULL, 16);
+	point.color = hex_to_uint(split[1]);
 	free(split[0]);
 	free(split[1]);
 	free(split);

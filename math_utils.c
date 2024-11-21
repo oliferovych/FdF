@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:36:11 by dolifero          #+#    #+#             */
-/*   Updated: 2024/11/21 01:14:50 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/11/21 13:05:06 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,31 @@ void	rotate_x(t_point *point, double angle_x)
 	tmp = point->y;
 	point->y = tmp * cos(angle_x) - point->z * sin(angle_x);
 	point->z = tmp * sin(angle_x) + point->z * cos(angle_x);
+}
+
+unsigned int	hex_to_uint(const char *hex_str)
+{
+	unsigned int	result;
+	char			c;
+	int				value;
+
+	result = 0;
+	if (hex_str[0] == '0' && (hex_str[1] == 'x' || hex_str[1] == 'X'))
+		hex_str += 2;
+	while (*hex_str)
+	{
+		c = *hex_str++;
+		if (c >= '0' && c <= '9')
+			value = c - '0';
+		else if (c >= 'a' && c <= 'f')
+			value = c - 'a' + 10;
+		else if (c >= 'A' && c <= 'F')
+			value = c - 'A' + 10;
+		else
+			return (0);
+		result = (result << 4) | value;
+	}
+	return (result);
 }
 
 int	count_values(const char *s)
