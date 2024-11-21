@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 19:21:38 by dolifero          #+#    #+#             */
-/*   Updated: 2024/11/20 06:35:01 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/11/21 01:27:38 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@ char	*parse_color(char *str)
 {
 	char	*color;
 
-	if(ft_strlen(str) != 8)
+	if (ft_strlen(str) != 8)
 		return (str);
 	color = ft_strjoin(str, "FF");
+	free(str);
 	return (color);
 }
 
@@ -30,7 +31,7 @@ t_point	parse_point(char *str, int i, int j)
 
 	point.x = j + 1;
 	point.y = i + 1;
-	if(ft_strchr(str, ',') == NULL)
+	if (!ft_strchr(str, ','))
 	{
 		point.z = ft_atoi(str);
 		point.color = 0xFFFFFFFF;
@@ -67,10 +68,9 @@ void	parse_file(char *file, t_map *map)
 			free(splitted[j]);
 		}
 		free(line);
-		free(splitted);
-		line = get_next_line(fd);
 		i++;
+		line = get_next_line(fd);
 	}
-	free(line);
+	free(splitted);
 	close(fd);
 }
