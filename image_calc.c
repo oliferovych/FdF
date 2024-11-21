@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:31:42 by dolifero          #+#    #+#             */
-/*   Updated: 2024/11/21 00:38:41 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/11/21 01:40:44 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	points_into_isometric(t_fdf	*fdf)
 		j = -1;
 		while (++j < fdf->map.width)
 		{
-			points[i][j].z =  (points[i][j].z / fdf->flatten) * fdf->scale;
+			points[i][j].z = (points[i][j].z / fdf->flatten) * fdf->scale;
 			points[i][j].x *= fdf->scale;
 			points[i][j].y *= fdf->scale;
 			rotate_x(&points[i][j], fdf->rotation_x);

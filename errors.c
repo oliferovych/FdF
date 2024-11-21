@@ -6,29 +6,29 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 17:59:52 by dolifero          #+#    #+#             */
-/*   Updated: 2024/11/20 06:13:05 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/11/21 01:55:46 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF_head.h"
 
-int ft_isdigit(int c)
+int	ft_isdigit(int c)
 {
 	return (c >= '0' && c <= '9');
 }
 
-int str_is_numerical(char *string)
+int	str_is_numerical(char *string)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (string[i] && string[i] != '\n')
 	{
-		if (ft_isdigit(string[i]) ||
-			(string[i] == '-' && ft_isdigit(string[i + 1])) ||
-			(string[i] == '+' && ft_isdigit(string[i + 1])) ||
-			string[i] == ' ' ||
-			string[i] == ',')
+		if (ft_isdigit(string[i])
+			|| (string[i] == '-' && ft_isdigit(string[i + 1]))
+			|| (string[i] == '+' && ft_isdigit(string[i + 1]))
+			|| string[i] == ' '
+			|| string[i] == ',')
 		{
 			if (string[i] == ',')
 			{
@@ -40,19 +40,19 @@ int str_is_numerical(char *string)
 				i++;
 		}
 		else
-			return 0;
+			return (0);
 	}
 	return (1);
 }
 
-void ft_error(t_fdf *fdf)
+void	ft_error(t_fdf *fdf)
 {
 	ft_putstr_fd((char *)mlx_strerror(mlx_errno), 2);
 	free_allocations(fdf);
 	exit(EXIT_FAILURE);
 }
 
-int valid_name(char *name, int argc)
+int	valid_name(char *name, int argc)
 {
 	if (argc != 2)
 		return (ft_printf("Usage: ./FdF <filename>.fdf\n"), exit(1), 0);
@@ -61,10 +61,10 @@ int valid_name(char *name, int argc)
 	return (1);
 }
 
-int openfile(int argc, char **argv, t_map *map)
+int	openfile(int argc, char **argv, t_map *map)
 {
-	char *line;
-	int fd;
+	char	*line;
+	int		fd;
 
 	map->height = 0;
 	map->width = 0;
