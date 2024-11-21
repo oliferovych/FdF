@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 19:10:03 by dolifero          #+#    #+#             */
-/*   Updated: 2024/11/21 13:21:22 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/11/21 14:00:34 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,45 +75,46 @@ typedef struct s_bresenham
 }				t_bresenham;
 
 // MAP INIT
-void	ft_allocate_map(t_map *map);
-void	parse_file(char *file, t_map *map);
-void	free_allocations(t_fdf *fdf);
-t_point	**ft_copy_points(t_map *map);
-void	free_points_copy(t_fdf *fdf);
+void			ft_allocate_map(t_map *map);
+void			parse_file(char *file, t_map *map);
+void			free_allocations(t_fdf *fdf);
+t_point			**ft_copy_points(t_map *map);
+void			free_points_copy(t_fdf *fdf);
 
 // ERROR CHECKS
-int		openfile(int argc, char **argv, t_map *map);
-int		str_is_numerical(char *string);
-void	ft_error(t_fdf *fdf);
-int		valid_name(char *name, int argc);
+int				openfile(int argc, char **argv, t_map *map);
+int				str_is_numerical(char *string);
+void			ft_error(t_fdf *fdf);
+int				valid_name(char *name, int argc);
 
 // IMAGE UTILITIES
-void	overlay(t_fdf *fdf);
-void	background(t_fdf *fdf);
-void	points_into_isometric(t_fdf *fdf);
-void	init_line_params(t_point src, t_point dest, t_bresenham *params);
-void	bresenham_line(mlx_image_t *img, t_point src, t_point dest,
-			t_bresenham params);
+void			overlay(t_fdf *fdf);
+void			background(t_fdf *fdf);
+void			points_into_isometric(t_fdf *fdf);
+void			init_line_params(t_point src, t_point dest,
+					t_bresenham *params);
+void			bresenham_line(mlx_image_t *img, t_point src, t_point dest,
+					t_bresenham params);
 
 // DRAWING
-void	draw_horizontal_lines(t_fdf *fdf);
-void	draw_vertical_lines(t_fdf *fdf);
-void	draw_mesh(void *param);
+void			draw_horizontal_lines(t_fdf *fdf);
+void			draw_vertical_lines(t_fdf *fdf);
+void			draw_mesh(void *param);
 
 // HOOKS / CONTROLS
-void	ft_window_hook(void *param);
-void	scale_hook(void *param);
-void	translation_hook(void *param);
-void	move_hook(void *param);
-void	ft_hook(t_fdf *fdf);
-void	reset_img(t_fdf *fdf);
+void			ft_window_hook(void *param);
+void			scale_hook(void *param);
+void			translation_hook(void *param);
+void			move_hook(void *param);
+void			ft_hook(t_fdf *fdf);
+void			reset_img(t_fdf *fdf);
 
 // MATH UTILS
-void	rotate_z(t_point *point, double angle_z);
-void	rotate_y(t_point *point, double angle_y);
-void	rotate_x(t_point *point, double angle_x);
+void			rotate_z(t_point *point, double angle_z);
+void			rotate_y(t_point *point, double angle_y);
+void			rotate_x(t_point *point, double angle_x);
 unsigned int	hex_to_uint(const char *hex_str);
-double	scale_calc(double scale);
-int		count_values(const char *s);
+double			scale_calc(double scale);
+int				count_values(const char *s);
 
 #endif
