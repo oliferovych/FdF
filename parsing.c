@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 19:21:38 by dolifero          #+#    #+#             */
-/*   Updated: 2024/11/21 13:02:56 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/11/21 13:56:21 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ void	parse_file(char *file, t_map *map)
 			free(splitted[j]);
 		}
 		free(line);
+		free(splitted);
 		i++;
 		line = get_next_line(fd);
 	}
-	free(splitted);
 	close(fd);
 }
