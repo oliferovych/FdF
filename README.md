@@ -17,7 +17,14 @@ in which all surfaces are outlined in lines.*
  - Has 4 different background colors;
 
 ## Map 42.fdf
-![image](https://github.com/user-attachments/assets/f2f9c5af-3028-40a7-bd40-9e2ad2214b10) ![image](https://github.com/user-attachments/assets/116bb10e-1576-4b5d-aa60-7db958111a7d) ![image](https://github.com/user-attachments/assets/9ef2dc13-adc0-4f78-a2ef-ab7662c3c34f) ![image](https://github.com/user-attachments/assets/a694a8f1-d423-467e-bf45-151455037170)
+![image](https://github.com/user-attachments/assets/a694a8f1-d423-467e-bf45-151455037170)
+![image](https://github.com/user-attachments/assets/b2f8ebf7-135b-493e-9091-99224e7013c9)
+![image](https://github.com/user-attachments/assets/116bb10e-1576-4b5d-aa60-7db958111a7d)
+![image](https://github.com/user-attachments/assets/f2f9c5af-3028-40a7-bd40-9e2ad2214b10)
+
+## Mars.fdf
+![image](https://github.com/user-attachments/assets/18229124-ada7-4271-b5f5-ed222ff88e51)
+![image](https://github.com/user-attachments/assets/4b2c6d23-4ddd-415c-b48c-31ab443df04f)
 
 ## Elem-fract.fdf
 ![image](https://github.com/user-attachments/assets/e7fb9efc-fadc-413b-aa4e-d6a92f86f3ea)
