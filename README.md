@@ -14,7 +14,7 @@ in which all surfaces are outlined in lines.*
 
 ## Key features:
  - A wireframe model, that is able to load huge maps;
- - Supports hexadecimal RGB colors (must be formatted [point,0xcolor];
+ - Supports hexadecimal RGB colors (must be formatted <point,0xcolor>);
  - User can zoom, move, rotate, change the projection type and altitude of the points.
  - Has 4 different background colors;
 
