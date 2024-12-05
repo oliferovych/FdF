@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:31:42 by dolifero          #+#    #+#             */
-/*   Updated: 2024/11/21 14:01:00 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/12/05 22:42:22 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,15 @@ void	points_into_isometric(t_fdf	*fdf)
 			points[i][j].z = (points[i][j].z / fdf->flatten) * fdf->scale;
 			points[i][j].x *= fdf->scale;
 			points[i][j].y *= fdf->scale;
-			rotate_x(&points[i][j], fdf->rotation_x);
-			rotate_y(&points[i][j], fdf->rotation_y);
+			points[i][j].x -= (fdf->map.width * fdf->scale) / 2;
+			points[i][j].y -= (fdf->map.height * fdf->scale) / 2;
 			rotate_z(&points[i][j], fdf->rotation_z);
+			points[i][j].x += (fdf->map.width * fdf->scale) / 2;
+			points[i][j].y += (fdf->map.height * fdf->scale) / 2;
 			if (fdf->iso == 1)
 				project(&points[i][j]);
-			points[i][j].x += WIDTH / 2 - (fdf->map.width * fdf->scale) / 2;
-			points[i][j].y += HEIGHT / 2 - (fdf->map.height * fdf->scale) / 2;
-			points[i][j].x += fdf->move_lr;
-			points[i][j].y += fdf->move_du;
+			points[i][j].x += (WIDTH / 2 - (fdf->map.width * fdf->scale) / 2) + fdf->move_lr;
+			points[i][j].y += (HEIGHT / 2 - (fdf->map.height * fdf->scale) / 2) + fdf->move_du;
 		}
 	}
 }
