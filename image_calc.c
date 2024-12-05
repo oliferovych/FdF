@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:31:42 by dolifero          #+#    #+#             */
-/*   Updated: 2024/12/05 22:42:22 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/12/05 23:13:58 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ void	project(t_point *point)
 	point->y = (int)tmp_y - point->z;
 }
 
+static void	translate(int *x, int *y, t_fdf *fdf)
+{
+	*x += (WIDTH / 2 - (fdf->map.width * fdf->scale) / 2) + fdf->move_lr;
+	*y += (HEIGHT / 2 - (fdf->map.height * fdf->scale) / 2) + fdf->move_du;
+}
+
 void	points_into_isometric(t_fdf	*fdf)
 {
 	int		i;
@@ -59,8 +65,7 @@ void	points_into_isometric(t_fdf	*fdf)
 			points[i][j].y += (fdf->map.height * fdf->scale) / 2;
 			if (fdf->iso == 1)
 				project(&points[i][j]);
-			points[i][j].x += (WIDTH / 2 - (fdf->map.width * fdf->scale) / 2) + fdf->move_lr;
-			points[i][j].y += (HEIGHT / 2 - (fdf->map.height * fdf->scale) / 2) + fdf->move_du;
+			translate(&points[i][j].x, &points[i][j].y, fdf);
 		}
 	}
 }

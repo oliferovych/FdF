@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 19:09:03 by dolifero          #+#    #+#             */
-/*   Updated: 2024/12/05 22:51:35 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/12/05 23:09:39 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	draw_image(void *param)
 	draw_mesh(fdf);
 }
 
-static void malloc_iso_points(t_fdf *fdf)
+static void	malloc_iso_points(t_fdf *fdf)
 {
 	int	i;
 
