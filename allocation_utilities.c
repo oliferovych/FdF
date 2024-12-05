@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 18:40:21 by dolifero          #+#    #+#             */
-/*   Updated: 2024/11/21 13:55:59 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/12/05 22:50:04 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,22 +48,20 @@ void	free_allocations(t_fdf *fdf)
 		free(fdf->map.points[i]);
 		i++;
 	}
+	free_points_copy(fdf);
 	free(fdf->map.points);
 	free(fdf->title);
 }
 
-t_point	**ft_copy_points(t_map *map)
+void ft_copy_points(t_map *map, t_point **points)
 {
-	t_point	**points;
 	int		i;
 	int		j;
 
 	i = 0;
-	points = (t_point **)malloc(sizeof(t_point *) * map->height);
 	while (i < map->height)
 	{
 		j = 0;
-		points[i] = (t_point *)malloc(sizeof(t_point) * map->width);
 		while (j < map->width)
 		{
 			points[i][j] = map->points[i][j];
@@ -71,5 +69,4 @@ t_point	**ft_copy_points(t_map *map)
 		}
 		i++;
 	}
-	return (points);
 }

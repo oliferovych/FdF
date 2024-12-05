@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 19:10:03 by dolifero          #+#    #+#             */
-/*   Updated: 2024/11/21 14:00:34 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/12/05 22:48:33 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ typedef struct s_bresenham
 void			ft_allocate_map(t_map *map);
 void			parse_file(char *file, t_map *map);
 void			free_allocations(t_fdf *fdf);
-t_point			**ft_copy_points(t_map *map);
+void			ft_copy_points(t_map *map, t_point **points);
 void			free_points_copy(t_fdf *fdf);
 
 // ERROR CHECKS

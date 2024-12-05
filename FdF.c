@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 19:09:03 by dolifero          #+#    #+#             */
-/*   Updated: 2024/11/21 13:58:03 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/12/05 22:51:35 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,23 @@ static void	draw_image(void *param)
 	t_fdf	*fdf;
 
 	fdf = (t_fdf *)param;
-	fdf->points = ft_copy_points(&fdf->map);
+	ft_copy_points(&fdf->map, fdf->points);
 	points_into_isometric(fdf);
 	background(fdf);
 	draw_mesh(fdf);
-	if (fdf->points != NULL)
-		free_points_copy(fdf);
+}
+
+static void malloc_iso_points(t_fdf *fdf)
+{
+	int	i;
+
+	i = 0;
+	fdf->points = (t_point **)malloc(sizeof(t_point *) * fdf->map.height);
+	while (i < fdf->map.height)
+	{
+		fdf->points[i] = (t_point *)malloc(sizeof(t_point) * fdf->map.width);
+		i++;
+	}
 }
 
 int32_t	main(int argc, char **argv)
@@ -54,6 +65,7 @@ int32_t	main(int argc, char **argv)
 	fdf.img = mlx_new_image(fdf.mlx, WIDTH, HEIGHT);
 	fdf.bg_color = BG_1;
 	fdf.standard_color = STANDARD_COLOR1;
+	malloc_iso_points(&fdf);
 	reset_img(&fdf);
 	overlay(&fdf);
 	ft_hook(&fdf);
