@@ -6,7 +6,7 @@
 #    By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/10 15:54:36 by dolifero          #+#    #+#              #
-#    Updated: 2024/08/10 21:43:44 by dolifero         ###   ########.fr        #
+#    Updated: 2024/12/12 15:47:33 by dolifero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,32 +50,34 @@ YELLOW		=	\033[0;93m
 BLUE		=	\033[0;94m
 MAGENTA		=	\033[0;95m
 CYAN		=	\033[2;96m
+BR_CYAN		=	\033[0;96m
 WHITE		=	\033[0;97m
 
-all:			$(NAME)
-				@echo "\n$(BOLD_CYAN)Starting $(BOLD_WHITE)[${NAME}] $(BOLD_CYAN)compilation..$(DEF_COLOR)\n"
-				@echo "\n$(BOLD_GREEN)${NAME} DONE!\n$(DEF_COLOR)"
+all:			$(NAME) visual_init
 
 libmlx:
 				mkdir -p $(LIBMLX)/build
 				cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 
 %.o: %.c
-				$(CC) $(CFLAGS) -o $@ -c $< $(HEADERLIBMLX)
+				@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERLIBMLX)
 
 $(NAME):		$(MAKELIBMLX) $(OBJS) $(LIBFT)
-				$(CC) $(OBJS) -Llibft -LMLX42 -lft $(LIBS) $(HEADERS) -o $(NAME)
+				@$(CC) $(OBJS) -Llibft -LMLX42 -lft $(LIBS) $(HEADERS) -o $(NAME) > /dev/null 2>&1
 
 $(LIBFT):
+				@echo "\n$(BOLD_CYAN)Starting $(BOLD_WHITE)[${LIBFT}] $(BOLD_CYAN)compilation..$(DEF_COLOR) $(CYAN)"
 				$(MAKE) -C $(LIBFT_DIR)
 
 $(MAKELIBMLX):	$(LIBMLX)
-				@echo "\n$(BOLD_CYAN)Starting $(BOLD_WHITE)[${LIBMLX}] $(BOLD_CYAN)compilation..$(DEF_COLOR)\n"
+				@echo "\n$(DEF_COLOR)$(BOLD_CYAN)Starting $(BOLD_WHITE)[${LIBMLX}] $(BOLD_CYAN)compilation..$(DEF_COLOR)$(CYAN)"
 				@mkdir -p $(LIBMLX)/build
 				@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
+				tput cup 10 0 && tput ed
 				@echo "\n$(BOLD_GREEN)${LIBMLX} DONE!\n$(DEF_COLOR)"
 
 $(LIBMLX):
+				@echo "\n$(BOLD_CYAN)Cloning $(BOLD_WHITE)[${LIBMLX}] $(BOLD_CYAN)library..$(DEF_COLOR)$(CYAN)"
 				touch .gitmodules
 				git submodule add -f https://github.com/codam-coding-college/MLX42.git
 
@@ -83,22 +85,56 @@ clean:
 				@echo "$(CYAN)"
 				$(RM) $(OBJS) $(LIBFT_DIR)/*.o
 				$(RM) -rf $(LIBMLX)/build
-				@echo "$(DEF_COLOR)"
-				@echo "\n$(BOLD_GREEN)Clean!\n$(DEF_COLOR)"
+				@echo "$(BOLD_GREEN)Clean!\n$(DEF_COLOR)"
 
 fclean:
 				@echo "$(CYAN)"
 				$(RM) -rf $(OBJS) $(NAME) $(LIBFT_DIR)/*.o $(LIBFT)
-				@echo "$(DEF_COLOR)"
-				@echo "\n$(BOLD_GREEN)Fclean!\n$(DEF_COLOR)"
+				@echo "$(DEF_COLOR)$(BOLD_GREEN)Fclean!\n$(DEF_COLOR)"
 
 lclean:
 				@echo "$(CYAN)"
 				$(RM) -rf $(LIBMLX)
+				@echo "$(DEF_COLOR)$(BOLD_GREEN)Library cleaned!\n$(DEF_COLOR)"
+
+re:				fclean lclean all
+
+visual_init:	clear
+				@$(MAKE) FDF_CYAN
+				@echo "$(BR_CYAN)"
+				@$(MAKE) loading
 				@echo "$(DEF_COLOR)"
-				@echo "\n$(BOLD_GREEN)Library cleaned!\n$(DEF_COLOR)"
+				clear
+				@$(MAKE) FDF_GREEN
+				@echo "$(GREEN)   ███████████████████████████████████████████$(DEF_COLOR)"
 
-re:				fclean all
+clear:
+				@clear
 
-.PHONY:			all clean fclean re libmlx
+FDF_CYAN:
+				@echo "\n$(BR_CYAN)             ███████╗██████╗ ███████╗"
+				@echo "             ██╔════╝██╔══██╗██╔════╝"
+				@echo "             █████╗  ██║  ██║█████╗  "
+				@echo "             ██╔══╝  ██║  ██║██╔══╝  "
+				@echo "             ██║     ██████╔╝██║     "
+				@echo "             ╚═╝     ╚═════╝ ╚═╝     $(DEF_COLOR)\n"
+
+
+
+FDF_GREEN:
+				@echo "\n$(GREEN)             ███████╗██████╗ ███████╗"
+				@echo "             ██╔════╝██╔══██╗██╔════╝"
+				@echo "             █████╗  ██║  ██║█████╗  "
+				@echo "             ██╔══╝  ██║  ██║██╔══╝  "
+				@echo "             ██║     ██████╔╝██║     "
+				@echo "             ╚═╝     ╚═════╝ ╚═╝     $(DEF_COLOR)\n"
+
+loading:
+				@echo "   "
+				@for i in {1..43}; do \
+					printf '%s' "█"; \
+					sleep 0.01; \
+				done
+
+.PHONY:			all clean fclean lclean re libmlx
 
