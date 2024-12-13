@@ -6,7 +6,7 @@
 #    By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/10 15:54:36 by dolifero          #+#    #+#              #
-#    Updated: 2024/12/12 15:47:33 by dolifero         ###   ########.fr        #
+#    Updated: 2024/12/13 15:29:18 by dolifero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -106,7 +106,7 @@ visual_init:	clear
 				@echo "$(DEF_COLOR)"
 				clear
 				@$(MAKE) FDF_GREEN
-				@echo "$(GREEN)   ███████████████████████████████████████████$(DEF_COLOR)"
+				@echo "$(GREEN)    DONE!    \n   ███████████████████████████████████████████$(DEF_COLOR)\n"
 
 clear:
 				@clear
@@ -130,7 +130,7 @@ FDF_GREEN:
 				@echo "             ╚═╝     ╚═════╝ ╚═╝     $(DEF_COLOR)\n"
 
 loading:
-				@echo "   "
+				@printf "   "
 				@for i in {1..43}; do \
 					printf '%s' "█"; \
 					sleep 0.01; \
