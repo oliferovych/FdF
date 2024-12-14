@@ -58,3 +58,8 @@ in which all surfaces are outlined in lines.*
 ## Renaissance.fdf
 ![image](https://github.com/user-attachments/assets/ead99a24-e10a-4e48-b8c8-2cabec07aa38)
 ![image](https://github.com/user-attachments/assets/436cf53d-79ee-4fb4-9fca-f38fe2743d76)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/oliferovych/FdF/blob/main/LICENSE) file for details.
+
