@@ -66,25 +66,23 @@ int	openfile(int argc, char **argv, t_map *map)
 	char	*line;
 	int		fd;
 
-	map->height = 0;
-	map->width = 0;
 	if (valid_name(argv[1], argc))
 	{
 		fd = open(argv[1], O_RDONLY);
 		line = get_next_line(fd);
-		while (line != NULL && valid_name(argv[1], argc))
+		map->height = 0;
+		map->width = count_values(line);
+		while (line != NULL)
 		{
-			if (!str_is_numerical(line))
+			if (!str_is_numerical(line) || count_values(line) != map->width)
 				return (free(line), ft_putstr_fd("File error\n", 2), 0);
-			map->width += count_values(line);
 			map->height++;
 			free(line);
 			line = get_next_line(fd);
 		}
-		map->width = map->width / map->height;
 		free(line);
 		close(fd);
 	}
-	ft_printf("%i, %i\n", map->width, map->height);
+	ft_printf("Width: %i;\nHeight: %i;\n", map->width, map->height);
 	return (1);
 }

@@ -58,7 +58,7 @@ void	parse_file(char *file, t_map *map)
 	fd = open(file, O_RDONLY);
 	i = 0;
 	line = get_next_line(fd);
-	while (line != NULL)
+	while (i < map->height)
 	{
 		j = -1;
 		splitted = ft_split(line, ' ');
