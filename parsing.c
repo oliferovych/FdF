@@ -17,7 +17,7 @@ char	*parse_color(char *str)
 {
 	char	*color;
 
-	if (ft_strlen(str) != 8)
+	if (ft_strlen(str) > 8)
 		return (str);
 	color = ft_strjoin(str, "FF");
 	free(str);
