@@ -55,9 +55,9 @@ void	points_into_isometric(t_fdf	*fdf)
 		j = -1;
 		while (++j < fdf->map.width)
 		{
-			points[i][j].z *= fdf->scale;
 			points[i][j].x *= fdf->scale;
 			points[i][j].y *= fdf->scale;
+			points[i][j].z *= fdf->scale;
 			points[i][j].z /= fdf->flatten;
 			points[i][j].x -= (fdf->map.width * fdf->scale) / 2;
 			points[i][j].y -= (fdf->map.height * fdf->scale) / 2;

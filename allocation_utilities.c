@@ -64,7 +64,10 @@ void	ft_copy_points(t_map *map, t_point **points)
 		j = 0;
 		while (j < map->width)
 		{
-			points[i][j] = map->points[i][j];
+			points[i][j].x = map->points[i][j].x;
+			points[i][j].y = map->points[i][j].y;
+			points[i][j].z = map->points[i][j].z;
+			points[i][j].color = map->points[i][j].color;
 			j++;
 		}
 		i++;

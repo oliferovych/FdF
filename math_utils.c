@@ -14,11 +14,13 @@
 
 void	rotate_z(t_point *point, double angle_z)
 {
-	int	tmp;
+	double	x;
+	double	y;
 
-	tmp = point->x;
-	point->x = tmp * cos(angle_z) - point->y * sin(angle_z);
-	point->y = tmp * sin(angle_z) + point->y * cos(angle_z);
+	x = (double)point->x;
+	y = (double)point->y;
+	point->x = (int)round(x * cos(angle_z) - y * sin(angle_z));
+	point->y = (int)round(x * sin(angle_z) + y * cos(angle_z));
 }
 
 void	rotate_y(t_point *point, double angle_y)
