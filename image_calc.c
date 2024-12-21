@@ -65,6 +65,8 @@ void	points_into_isometric(t_fdf	*fdf)
 			if (fdf->iso == 1)
 				project(&points[i][j]);
 			translate(&points[i][j].x, &points[i][j].y, fdf);
+			points[i][j].x += (fdf->map.width * fdf->scale) / 2;
+			points[i][j].y += (fdf->map.height * fdf->scale) / 2;
 		}
 	}
 }
